@@ -1,0 +1,10 @@
+.header {
+    flex: 0 0 auto;
+    background-color: cornflowerblue;
+}
+.left{
+    flex: 0 0 240px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
