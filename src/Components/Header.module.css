@@ -1,10 +1,38 @@
 .header {
-    flex: 0 0 auto;
-    background-color: cornflowerblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #2c3e50;
+  color: white;
 }
-.left{
-    flex: 0 0 240px;
-    background-color: #333;
-    color: white;
-    padding: 20px;
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.userName {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+.logoutBtn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+.logoutBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
 }

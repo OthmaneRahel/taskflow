@@ -1,0 +1,81 @@
+/* MainContent.module.css */
+
+.main {
+  flex: 1;
+  padding: 24px;
+  background-color: #f4f5f8;
+  min-height: calc(100vh - 60px); /* Ajustez selon la hauteur de votre header */
+}
+
+.board {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 8px 4px 24px 4px;
+  min-height: 500px;
+}
+
+.column {
+  min-width: 320px;
+  max-width: 380px;
+  background-color: #efefef;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.colTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3c3c3c;
+  margin: 0 0 8px 0;
+  padding: 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.colTitle span {
+  color: #6b6b6b;
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #2c3e50;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9e9e9;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: #d0d0d0;
+}
+
+/* Scrollbar personnalisée pour le board */
+.board::-webkit-scrollbar {
+  height: 8px;
+}
+
+.board::-webkit-scrollbar-track {
+  background: #e5e5e5;
+  border-radius: 4px;
+}
+
+.board::-webkit-scrollbar-thumb {
+  background: #b3b3b3;
+  border-radius: 4px;
+}
+
+.board::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
