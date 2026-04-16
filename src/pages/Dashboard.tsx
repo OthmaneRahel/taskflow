@@ -1,17 +1,25 @@
 import { useState, useEffect } from 'react'; 
 import { useAuth } from '../features/auth/AuthContextType'; 
 import api from '../api/axios'; 
-import Header from '../Components/Header'; 
+//import Header from '../Components/Header'; 
 import Sidebar from '../Components/Sidebar'; 
 import MainContent from '../Components/MainContent'; 
 import ProjectForm from '../Components/ProjectForm'; 
 import styles from './Dashboard.module.css'; 
-  
+import HeaderMUI from '../Components/HeaderMUI';
+import type { RootState } from '../store';
+import { useDispatch } from 'react-redux';
+import { logout } from '../features/auth/authSlice';
+import useProjects from '../hooks/useProjects';   
+
+
 interface Project { id: string; name: string; color: string; } 
 interface Column { id: string; title: string; tasks: string[]; } 
   
 export default function Dashboard() { 
-  const { state: authState, dispatch } = useAuth(); 
+  //const { state: authState, dispatch } = useAuth();
+  const dispatch = useDispatch();
+  const { user, error } = useSelector((state: RootState) => state.auth);
   const [sidebarOpen, setSidebarOpen] = useState(true); 
   const [projects, setProjects] = useState<Project[]>([]); 
   const [columns, setColumns] = useState<Column[]>([]); 
@@ -40,6 +48,10 @@ export default function Dashboard() {
     setProjects(prev => [...prev, data]); 
   } 
   
+
+  const dangerousName = '<img src=x onerror=alert("HACK")>';
+
+
   // PUT — renommer un projet 
   // À VOUS D'ÉCRIRE (voir specs ci-dessous) 
   
@@ -48,13 +60,16 @@ export default function Dashboard() {
   
   if (loading) return <div className={styles.loading}>Chargement...</div>; 
   
+
+  
   return ( 
     <div className={styles.layout}> 
-      <Header 
+      <div dangerouslySetInnerHTML={{ __html: dangerousName }} />
+      <HeaderMUI 
         title="TaskFlow" 
         onMenuClick={() => setSidebarOpen(p => !p)} 
-        userName={authState.user?.name} 
-        onLogout={() => dispatch({ type: 'LOGOUT' })} 
+        userName={user?.name} 
+        onLogout={() => dispatch(logout())} 
       /> 
       <div className={styles.body}> 
         <Sidebar projects={projects} isOpen={sidebarOpen} /> 
