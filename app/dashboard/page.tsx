@@ -1,3 +1,5 @@
+import { deleteProject } from "../actions/projects";
+
 interface Project { 
   id: string; 
   name: string; 
@@ -5,7 +7,7 @@ interface Project {
 } 
   
 export default async function DashboardPage() { 
-  const res = await fetch('http://localhost:4000/projects', { 
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/projects`, { 
     // cache: 'no-store'
   }); 
   const projects: Project[] = await res.json(); 
@@ -21,7 +23,11 @@ export default async function DashboardPage() {
               display: 'inline-block', width: 12, height: 12, 
               borderRadius: '50%', background: p.color, marginRight: 8 
             }} /> 
-            <a href={`/projects/${p.id}`}>{p.name}</a> 
+            <a href={`/projects/${p.id}`}>{p.name}</a>
+            <form action={deleteProject} style={{ display: 'inline' }}> 
+              <input type="hidden" name="id" value={p.id} /> 
+              <button type="submit" style={{ background: 'none', border: 'none', cursor: 'pointer' }}> 🗑 </button> 
+            </form>  
           </li> 
         ))} 
       </ul> 
